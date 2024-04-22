@@ -1,0 +1,47 @@
+from selenium import webdriver
+from bs4 import BeautifulSoup
+import pandas as pd
+
+def extract_data(url):
+    # Configurar el navegador Selenium
+    
+    # Cargar la página web
+    driver.get(url)
+    
+    # Obtener el HTML de la página después de que se hayan cargado todos los elementos dinámicos
+    html = driver.page_source
+    
+    # Cerrar el navegador Selenium
+    driver.quit()
+    
+    # Analizar el HTML utilizando Beautiful Soup
+    soup = BeautifulSoup(html, 'html.parser')
+    
+    # Extraer los datos utilizando Beautiful Soup
+    # Supongamos que queremos extraer el texto de todos los elementos <p> en la página
+    data_elements = soup.find_all('p')
+    data = [element.get_text() for element in data_elements]
+    
+    return data
+
+def main():
+    # URL de la página web de donde deseas extraer datos
+    url = 
+    
+    # Llamar a la función para extraer los datos
+    extracted_data = extract_data(url)
+    
+    # Verificar si se extrajeron datos
+    if extracted_data:
+        # Crear un DataFrame de pandas con los datos extraídos
+        df = pd.DataFrame({"Datos": extracted_data})
+        
+        # Hacer algo con el DataFrame, por ejemplo, guardarlo en un archivo CSV
+        df.to_csv("datos_extraidos.csv", index=False)
+        
+        print("Datos extraídos exitosamente y guardados en 'datos_extraidos.csv'")
+    else:
+        print("No se pudieron extraer datos.")
+
+if __name__ == "__main__":
+    main()
